@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerwa Restaurants - Delicious Meals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+
+        .restaurant-name {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .menu-section {
+            padding: 40px 30px 30px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #e74c3c;
+            display: inline-block;
+            padding: 0 20px;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f1c40f, #e74c3c);
+            z-index: 0;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item:nth-child(1) { border-color: #e74c3c; }
+        .menu-item:nth-child(2) { border-color: #f39c12; }
+        .menu-item:nth-child(3) { border-color: #27ae60; }
+        .menu-item:nth-child(4) { border-color: #3498db; }
+        .menu-item:nth-child(5) { border-color: #9b59b6; }
+
+        .food-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #e74c3c;
+        }
+
+        .menu-item h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subsidy-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .contact-section {
+            background: linear-gradient(90deg, #2c3e50 0%, #1a2530 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #f1c40f;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: #f1c40f;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, #25D366, #128C7E);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .restaurant-name {
+                font-size: 2.5rem;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="restaurant-card">
+            <div class="header">
+                <h1 class="restaurant-name">Kerwa Restaurants</h1>
+                <p class="tagline">Delicious meals powered by US Subsidy</p>
+            </div>
+            
+            <div class="menu-section">
+                <div class="section-title">
+                    <h2>Our Menu</h2>
+                </div>
+                
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="food-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Pap and Beef</h3>
+                        <div class="subsidy-badge">US Subsidy Meal</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="food-icon">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                        <h3>Rice and Chicken</h3>
+                        <div class="subsidy-badge">US Subsidy Meal</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="food-icon">
+                            <i class="fas fa-bacon"></i>
+                        </div>
+                        <h3>Samp and Beef</h3>
+                        <div class="subsidy-badge">US Subsidy Meal</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="food-icon">
+                            <i class="fas fa-egg"></i>
+                        </div>
+                        <h3>English Breakfast</h3>
+                        <div class="subsidy-badge">US Subsidy Meal</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="food-icon">
+                            <i class="fas fa-hamburger"></i>
+                        </div>
+                        <h3>French Fries and King Burger</h3>
+                        <div class="subsidy-badge">US Subsidy Meal</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-section">
+                <h2 class="contact-title">Contact Us</h2>
+                
+                <div class="contact-info">
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <span>📍 Kgosing Ward, Maun, Botswana</span>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="fab fa-whatsapp contact-icon"></i>
+                        <span>📞 WhatsApp Us</span>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/" class="whatsapp-button">
+                    <i class="fab fa-whatsapp"></i>
+                    Message us on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
